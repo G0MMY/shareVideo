@@ -1,5 +1,5 @@
 #include "../../headers/server/RoomHandler.hpp"
 
-void RoomHandler::AddRoom(char* buffer, int length) {
-    
+string RoomHandler::AddRoom(char* buffer, int length) {
+    return ProcessJson::hello();
 }

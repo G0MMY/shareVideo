@@ -34,13 +34,25 @@ void http::TCPServer::Listen() {
         return;
     }
 
-    string hello = "hello world";
     char buffer[1024] = { 0 };
     int valread = read(pendingSocket, buffer, 1024);
+
+    HandleRoute(buffer, 1024);
+
+    string test = RoomHandler::AddRoom(buffer, 1024);
+    string hello = ResponseWriter::WriteGet(test, 200);
 
     send(pendingSocket, hello.c_str(), hello.size(), 0);
 
     Stop();
+}
+
+string http::TCPServer::HandleRoute(char* buffer, int size) {
+    Request req = processRequest(buffer);
+
+    
+    
+    return "";
 }
 
 void http::TCPServer::Stop() {
